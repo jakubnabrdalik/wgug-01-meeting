@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+version = '0.1.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+    compile 'com.google.guava:guava:16.0'
+    compile 'joda-time:joda-time:2.3'
+    compile 'org.jadira.usertype:usertype.jodatime:2.0.1'
+    compile 'org.codehaus.groovy:groovy-all:2.2.1'
+
+    //testing
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile("org.spockframework:spock-core:0.7-groovy-2.0") {
+        exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+    }
+}
+
+sourceSets {
+    test {
+        groovy {
+            srcDirs = ['src/test/groovy']
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.9'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

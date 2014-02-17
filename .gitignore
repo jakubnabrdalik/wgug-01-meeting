@@ -1,0 +1,11 @@
+.gradle
+.idea
+*.iml
+build
+*.ipr
+*.iws
+out
+springStarterTestDb.*
+springStarterDb.*
+classes
+
