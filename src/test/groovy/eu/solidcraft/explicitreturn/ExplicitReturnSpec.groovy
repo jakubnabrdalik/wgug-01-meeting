@@ -42,8 +42,6 @@ class ExplicitReturnSpec extends Specification {
     }
 
     /*
-
-        Always use explicit return,except for in-line closures
-
+        Always use explicit return, except for in-line closures
      */
 }

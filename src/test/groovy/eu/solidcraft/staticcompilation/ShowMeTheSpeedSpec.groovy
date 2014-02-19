@@ -23,31 +23,21 @@ class ShowMeTheSpeedSpec extends Specification {
     }
 
     long staticVsDynamic(int i) {
-        long dynamicLength = getDynamicTime(i)
-        long staticLength = getStaticTime(i)
+        long dynamicLength = measure(i, "dynamic") { fibDynamic(i) }
+        long staticLength = measure(i, "static") { fibStatic(i) }
         return dynamicLength - staticLength
     }
 
-    private long getStaticTime(int i) {
-        long staticStart = milis()
-        fibStatic(i)
-        long staticLength = calculateTheEnd(staticStart)
-        println("static took: $staticLength")
-        return staticLength
+    private long measure(int i, String name, Closure closure) {
+        long start = milis()
+        closure.call(i)
+        long length = calculateTheEnd(start)
+        println("$name took: $length")
+        return length
     }
 
-    private long getDynamicTime(int i) {
-        long dynamicStart = milis()
-        fibDynamic(i)
-        long dynamicLength = calculateTheEnd(dynamicStart)
-        println("dynamic took: $dynamicLength")
-        return dynamicLength
-    }
-
-    private long calculateTheEnd(long dynamicStart) {
-        long dynamicEnd = milis()
-        long dynamicLength = dynamicEnd - dynamicStart
-        return dynamicLength
+    private long calculateTheEnd(long start) {
+        return milis() - start
     }
 
     private long milis() {

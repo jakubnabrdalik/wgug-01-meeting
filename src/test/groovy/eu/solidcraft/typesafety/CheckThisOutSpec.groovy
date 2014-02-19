@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class CheckThisOutSpec extends Specification {
     /*
-    http://melix.github.io/talks/s2gx-typechecking/slides.html#slide-1
+    see: ttp://melix.github.io/talks/s2gx-typechecking/slides.html#slide-1
 
     Goal
 
@@ -32,10 +32,10 @@ class CheckThisOutSpec extends Specification {
         void bar() {}
 
         void method() {
-            foo() // no error, method is defined
-            baz() // error at compile time!
-            Set set = 'Bar' // Cannot assign a value of type String to variable of type Set
-            List<Number> list = ['a','b','c'] // Works on generics too
+            foo()
+            baz()
+            Set set = 'Bar'
+            List<Number> list = ['a','b','c']
             println "taki fajny ten $gString"
         }
     }
